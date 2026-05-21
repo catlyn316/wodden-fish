@@ -1,0 +1,1216 @@
+/* ==========================================================================
+   Zen Muyu Online - Custom Styling & Theme System
+   ========================================================================== */
+
+/* Design Tokens & Root Variables */
+:root {
+    --transition-smooth: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --border-radius-sm: 8px;
+    --border-radius-md: 16px;
+    --border-radius-lg: 24px;
+    --glass-border: 1px solid rgba(255, 255, 255, 0.07);
+    --glass-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    
+    /* Font Families */
+    --font-heading: 'Noto Serif TC', serif;
+    --font-ui: 'Outfit', 'Inter', system-ui, sans-serif;
+    --font-numbers: 'Cinzel', serif;
+}
+
+/* --------------------------------------------------------------------------
+   SKIN SYSTEMS (12 Themes)
+   -------------------------------------------------------------------------- */
+
+/* 1. Classic Wood Skin */
+.skin-classic {
+    --bg-primary: #0F0F12;
+    --bg-secondary: #16161B;
+    --glass-bg: rgba(24, 24, 30, 0.65);
+    --text-primary: #ECE6DB;
+    --text-muted: #8F8A80;
+    --accent: #E5A93B;
+    --accent-glow: rgba(229, 169, 59, 0.2);
+    --muyu-color-light: #C0793F;
+    --muyu-color-mid: #905324;
+    --muyu-color-dark: #64320F;
+    --muyu-stroke: #ECE6DB;
+    --muyu-stroke-dark: #2F1504;
+    --muyu-shadow: rgba(0, 0, 0, 0.45);
+}
+
+/* 2. Golden Temple Skin */
+.skin-gold {
+    --bg-primary: #120E08;
+    --bg-secondary: #1D170E;
+    --glass-bg: rgba(29, 23, 14, 0.7);
+    --text-primary: #F7E7CD;
+    --text-muted: #A89575;
+    --accent: #FFD700;
+    --accent-glow: rgba(255, 215, 0, 0.25);
+    --muyu-color-light: #FFE066;
+    --muyu-color-mid: #D4AF37;
+    --muyu-color-dark: #AA7C11;
+    --muyu-stroke: #FFF4D0;
+    --muyu-stroke-dark: #402E03;
+    --muyu-shadow: rgba(212, 175, 55, 0.15);
+}
+
+/* 3. Cyber Punk Neon Skin */
+.skin-cyber {
+    --bg-primary: #080511;
+    --bg-secondary: #100B22;
+    --glass-bg: rgba(16, 11, 34, 0.65);
+    --text-primary: #E0E0FF;
+    --text-muted: #7E70A6;
+    --accent: #00F0FF;
+    --accent-glow: rgba(0, 240, 255, 0.25);
+    --muyu-color-light: #FF007F;
+    --muyu-color-mid: #8A00FF;
+    --muyu-color-dark: #24005F;
+    --muyu-stroke: #00F0FF;
+    --muyu-stroke-dark: #000000;
+    --muyu-shadow: rgba(138, 0, 255, 0.3);
+}
+
+/* 4. Minimalist Ink Skin */
+.skin-ink {
+    --bg-primary: #F5F5F3;
+    --bg-secondary: #EAEAE6;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --text-primary: #1A1A1A;
+    --text-muted: #666666;
+    --accent: #333333;
+    --accent-glow: rgba(0, 0, 0, 0.05);
+    --muyu-color-light: #E0DED9;
+    --muyu-color-mid: #A5A29B;
+    --muyu-color-dark: #504F4C;
+    --muyu-stroke: #1A1A1A;
+    --muyu-stroke-dark: #0A0A0A;
+    --muyu-shadow: rgba(0, 0, 0, 0.12);
+}
+
+/* 5. Sakura Pink Skin */
+.skin-sakura {
+    --bg-primary: #FAF0F2;
+    --bg-secondary: #F3DEE2;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --text-primary: #5C3D42;
+    --text-muted: #9E7D82;
+    --accent: #E86B8A;
+    --accent-glow: rgba(232, 107, 138, 0.2);
+    --muyu-color-light: #FFD2DC;
+    --muyu-color-mid: #FFA7BA;
+    --muyu-color-dark: #E07A90;
+    --muyu-stroke: #5C3D42;
+    --muyu-stroke-dark: #3A2024;
+    --muyu-shadow: rgba(232, 107, 138, 0.12);
+}
+
+/* 6. Jade Green Skin */
+.skin-jade {
+    --bg-primary: #0A140F;
+    --bg-secondary: #0E1F18;
+    --glass-bg: rgba(14, 31, 24, 0.65);
+    --text-primary: #D4ECE1;
+    --text-muted: #7FA392;
+    --accent: #00CC7A;
+    --accent-glow: rgba(0, 204, 122, 0.2);
+    --muyu-color-light: #66E0B2;
+    --muyu-color-mid: #14B876;
+    --muyu-color-dark: #0A5C3B;
+    --muyu-stroke: #D4ECE1;
+    --muyu-stroke-dark: #032014;
+    --muyu-shadow: rgba(20, 184, 118, 0.15);
+}
+
+/* 7. Abyss Dark Skin */
+.skin-abyss {
+    --bg-primary: #050505;
+    --bg-secondary: #0D0D0D;
+    --glass-bg: rgba(15, 15, 15, 0.7);
+    --text-primary: #E0E0E0;
+    --text-muted: #666666;
+    --accent: #FFFFFF;
+    --accent-glow: rgba(255, 255, 255, 0.15);
+    --muyu-color-light: #444444;
+    --muyu-color-mid: #222222;
+    --muyu-color-dark: #111111;
+    --muyu-stroke: #FFFFFF;
+    --muyu-stroke-dark: #000000;
+    --muyu-shadow: rgba(255, 255, 255, 0.05);
+}
+
+/* 8. Lava Core Skin */
+.skin-lava {
+    --bg-primary: #120502;
+    --bg-secondary: #1C0904;
+    --glass-bg: rgba(28, 9, 4, 0.7);
+    --text-primary: #FFE6E0;
+    --text-muted: #A37970;
+    --accent: #FF4D00;
+    --accent-glow: rgba(255, 77, 0, 0.25);
+    --muyu-color-light: #FFA680;
+    --muyu-color-mid: #FF5500;
+    --muyu-color-dark: #992200;
+    --muyu-stroke: #FFE6E0;
+    --muyu-stroke-dark: #330B00;
+    --muyu-shadow: rgba(255, 85, 0, 0.25);
+}
+
+/* 9. Deep Ocean Skin */
+.skin-ocean {
+    --bg-primary: #020914;
+    --bg-secondary: #04142B;
+    --glass-bg: rgba(4, 20, 43, 0.65);
+    --text-primary: #E1ECF7;
+    --text-muted: #748BA8;
+    --accent: #00BFFF;
+    --accent-glow: rgba(0, 191, 255, 0.25);
+    --muyu-color-light: #7ED6FF;
+    --muyu-color-mid: #009BE0;
+    --muyu-color-dark: #004D70;
+    --muyu-stroke: #E1ECF7;
+    --muyu-stroke-dark: #002233;
+    --muyu-shadow: rgba(0, 155, 224, 0.2);
+}
+
+/* 10. Aurora Borealis Skin */
+.skin-aurora {
+    --bg-primary: #04100E;
+    --bg-secondary: #0A1C19;
+    --glass-bg: rgba(10, 28, 25, 0.65);
+    --text-primary: #E0FAF5;
+    --text-muted: #6E9E95;
+    --accent: #10FFC8;
+    --accent-glow: rgba(16, 255, 200, 0.25);
+    --muyu-color-light: #70FFDC;
+    --muyu-color-mid: #00D1A0;
+    --muyu-color-dark: #007055;
+    --muyu-stroke: #E0FAF5;
+    --muyu-stroke-dark: #002B20;
+    --muyu-shadow: rgba(0, 209, 160, 0.2);
+}
+
+/* 11. Blue Porcelain Skin */
+.skin-porcelain {
+    --bg-primary: #F0F4FA;
+    --bg-secondary: #DEE7F3;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --text-primary: #1C355E;
+    --text-muted: #6A80A6;
+    --accent: #0055A5;
+    --accent-glow: rgba(0, 85, 165, 0.1);
+    --muyu-color-light: #FFFFFF;
+    --muyu-color-mid: #EBF2FA;
+    --muyu-color-dark: #BACDE5;
+    --muyu-stroke: #0055A5;
+    --muyu-stroke-dark: #0A2240;
+    --muyu-shadow: rgba(0, 85, 165, 0.08);
+}
+
+/* 12. Heavy Metal Obsidian Skin */
+.skin-heavy {
+    --bg-primary: #141416;
+    --bg-secondary: #1E1F22;
+    --glass-bg: rgba(30, 31, 34, 0.65);
+    --text-primary: #E8E8E8;
+    --text-muted: #7E8085;
+    --accent: #D4AF37;
+    --accent-glow: rgba(212, 175, 55, 0.2);
+    --muyu-color-light: #4A4D52;
+    --muyu-color-mid: #2A2C30;
+    --muyu-color-dark: #1A1B1D;
+    --muyu-stroke: #D4AF37;
+    --muyu-stroke-dark: #0A0A0B;
+    --muyu-shadow: rgba(212, 175, 55, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   BASE SYSTEM
+   -------------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.8s ease, color 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Ambient Backglow Filter */
+.ambient-glow {
+    position: absolute;
+    width: 60vw;
+    height: 60vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+    transition: background 0.8s ease;
+    animation: glow-pulse 8s infinite alternate ease-in-out;
+}
+
+@keyframes glow-pulse {
+    0% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* --------------------------------------------------------------------------
+   LAYOUT STRUCTURE
+   -------------------------------------------------------------------------- */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 10;
+    position: relative;
+    flex: 1;
+}
+
+/* Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    z-index: 100;
+    transition: var(--transition-smooth);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    font-size: 28px;
+    filter: drop-shadow(0 0 10px var(--accent-glow));
+    animation: spin-slow 12s infinite linear;
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.logo h1 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.logo h1 span {
+    font-family: var(--font-numbers);
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    margin-left: 6px;
+    opacity: 0.85;
+}
+
+/* Common Icon/Text Buttons */
+.icon-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: var(--glass-border);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-smooth);
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Zen Workspace Panel Grid */
+.zen-workspace {
+    display: grid;
+    grid-template-columns: 320px 1fr 340px;
+    gap: 24px;
+    flex: 1;
+    align-items: stretch;
+    transition: var(--transition-smooth);
+}
+
+.sidebar-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 20;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: var(--glass-border);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    box-shadow: var(--glass-shadow);
+    transition: border-color 0.5s ease, box-shadow 0.5s ease, background 0.8s ease;
+}
+
+.glass-card h3 {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   LEFT SIDEBAR (STATS & ACHIEVEMENTS)
+   -------------------------------------------------------------------------- */
+.merit-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-top: 2px solid var(--accent);
+}
+
+.card-tag {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.merit-display {
+    font-family: var(--font-numbers);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 20px var(--accent-glow);
+    line-height: 1.1;
+    margin: 4px 0;
+}
+
+.merit-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.merit-sub strong {
+    color: var(--text-primary);
+    font-family: var(--font-numbers);
+}
+
+.bullet {
+    opacity: 0.5;
+}
+
+/* Achievements Panel */
+.achievements-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    max-height: 280px;
+    padding-right: 4px;
+    flex: 1;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: var(--border-radius-sm);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: var(--transition-smooth);
+}
+
+.achievement-item.unlocked {
+    background: rgba(229, 169, 59, 0.05);
+    border-color: rgba(229, 169, 59, 0.15);
+}
+
+.skin-cyber .achievement-item.unlocked {
+    background: rgba(0, 240, 255, 0.05);
+    border-color: rgba(0, 240, 255, 0.15);
+}
+
+.achievement-badge {
+    font-size: 20px;
+    filter: grayscale(1);
+    opacity: 0.4;
+    transition: var(--transition-smooth);
+}
+
+.achievement-item.unlocked .achievement-badge {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.achievement-info h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: var(--text-primary);
+}
+
+.achievement-info p {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Quote and Breath Guide Card */
+.quote-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.quote-content {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.6;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.breathing-circle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.breathing-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: var(--accent-glow);
+    animation: breathing 8s infinite ease-in-out;
+}
+
+.breathing-text {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+@keyframes breathing {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.8); opacity: 1; box-shadow: 0 0 15px var(--accent-glow); }
+}
+
+/* --------------------------------------------------------------------------
+   CENTER STAGE (THE MUYU TAP AREA)
+   -------------------------------------------------------------------------- */
+.muyu-stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    position: relative;
+    min-height: 450px;
+    transition: var(--transition-smooth);
+}
+
+.combo-badge {
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-family: var(--font-numbers);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: var(--transition-spring);
+    box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+.combo-badge.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.combo-badge span {
+    font-size: 16px;
+}
+
+/* Tap Target Container (Responsive fluid viewport bound resizing on all devices) */
+.muyu-container {
+    width: 45vw;
+    height: 45vw;
+    max-width: 290px;
+    max-height: 290px;
+    min-width: 190px;
+    min-height: 190px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.muyu-wrapper {
+    width: 100%;
+    height: 100%;
+    transition: var(--transition-spring);
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4));
+    position: relative;
+    z-index: 10; /* Lower index so graphics are beneath text */
+}
+
+.muyu-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.muyu-svg-body {
+    transition: fill 0.8s ease, stroke 0.5s ease;
+}
+
+/* Springy active state on tap */
+.muyu-container.tapping .muyu-wrapper {
+    transform: scale(0.92) translateY(5px);
+}
+
+.tap-hint {
+    margin-top: 32px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    opacity: 0.7;
+    animation: breathe-opacity 3s infinite alternate ease-in-out;
+}
+
+@keyframes breathe-opacity {
+    from { opacity: 0.4; }
+    to { opacity: 0.8; }
+}
+
+/* --------------------------------------------------------------------------
+   PARTICLES SYSTEM (FLOATING TEXT & RIPPLES)
+   -------------------------------------------------------------------------- */
+.ripple-container, .floating-text-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100; /* Explicitly high z-index to display strictly above the wood fish SVG */
+}
+
+/* Ripple Element */
+.muyu-ripple {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent);
+    transform: translate(-50%, -50%) scale(0.1);
+    opacity: 0.8;
+    z-index: 90;
+    animation: ripple-out 1s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes ripple-out {
+    to {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+        border-width: 0.5px;
+    }
+}
+
+/* Floating Text Element */
+.floating-merit {
+    position: absolute;
+    color: var(--accent);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 22px;
+    pointer-events: none;
+    text-shadow: 0 0 10px var(--accent-glow), 0 2px 5px rgba(0,0,0,0.5);
+    white-space: nowrap;
+    z-index: 120; /* Keep numbers floating on very top layer */
+    animation: floatUp 1.1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(0.7) rotate(0deg);
+    }
+    15% {
+        opacity: 1;
+        transform: translate(-50%, -30px) scale(1.1) rotate(var(--rot, 0deg));
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, var(--dist, -130px)) scale(0.8) rotate(var(--rot, 0deg));
+    }
+}
+
+/* --------------------------------------------------------------------------
+   RIGHT SIDEBAR (SETTINGS PANEL)
+   -------------------------------------------------------------------------- */
+
+/* Skin Selector Carousel */
+.skin-selector-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.skin-selector {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 8px 4px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+
+.skin-btn {
+    flex: 0 0 115px;
+    scroll-snap-align: start;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-sm);
+    color: var(--text-muted);
+    padding: 12px 8px;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition-smooth);
+    text-align: center;
+}
+
+.skin-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+}
+
+.skin-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent);
+    color: var(--text-primary);
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.03);
+}
+
+.color-preview {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+/* 12 Skin Color Previews */
+.skin-classic-preview { background: #905324; border: 1.5px solid #ECE6DB; }
+.skin-gold-preview { background: #D4AF37; border: 1.5px solid #FFF4D0; }
+.skin-cyber-preview { background: #8A00FF; border: 1.5px solid #00F0FF; }
+.skin-ink-preview { background: #504F4C; border: 1.5px solid #1A1A1A; }
+.skin-sakura-preview { background: #FFA7BA; border: 1.5px solid #5C3D42; }
+.skin-jade-preview { background: #14B876; border: 1.5px solid #D4ECE1; }
+.skin-abyss-preview { background: #222222; border: 1.5px solid #FFFFFF; }
+.skin-lava-preview { background: #FF5500; border: 1.5px solid #FFE6E0; }
+.skin-ocean-preview { background: #009BE0; border: 1.5px solid #E1ECF7; }
+.skin-aurora-preview { background: #00D1A0; border: 1.5px solid #E0FAF5; }
+.skin-porcelain-preview { background: #EBF2FA; border: 1.5px solid #0055A5; }
+.skin-heavy-preview { background: #2A2C30; border: 1.5px solid #D4AF37; }
+
+/* Custom Text Split Inputs (Label & Value Separately) */
+.custom-word-settings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.input-group-half {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group-half label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--border-radius-sm);
+    padding: 8px 12px;
+    transition: var(--transition-smooth);
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.input-wrapper input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    width: 100%;
+}
+
+/* Quick Tag Buttons */
+.quick-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-muted);
+    font-family: var(--font-ui);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.tag-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+
+/* Aesthetic Slider Control Styles */
+.slider-group {
+    margin-bottom: 16px;
+}
+
+.slider-group:last-child {
+    margin-bottom: 0;
+}
+
+.slider-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.slider-label span:last-child {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.08);
+    outline: none;
+    margin: 8px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--accent-glow);
+    transition: transform 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+}
+
+/* Switch styling */
+.auto-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.auto-cultivate-card h3 {
+    margin-bottom: 0;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
+    transition: .4s;
+    border: var(--glass-border);
+}
+
+.switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--text-muted);
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked + .switch-slider {
+    background-color: var(--accent-glow);
+    border-color: var(--accent);
+}
+
+input:checked + .switch-slider:before {
+    transform: translateX(22px);
+    background-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.app-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 12px;
+    color: var(--text-muted);
+    z-index: 100;
+    transition: var(--transition-smooth);
+}
+
+.text-link {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    text-decoration: underline;
+    opacity: 0.7;
+    transition: var(--transition-smooth);
+}
+
+.text-link:hover {
+    color: #FF5E5E;
+    opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   ZEN MODE / SCREEN-STATE STYLING
+   -------------------------------------------------------------------------- */
+.exit-zen-btn {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: rgba(20, 20, 25, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    pointer-events: none;
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+}
+
+.exit-zen-btn:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Zen State Body Modifier (Guarantees zero scrolling & centered wood fish) */
+body.zen-active {
+    height: 100vh;
+    overflow: hidden;
+}
+
+body.zen-active .app-container {
+    height: 100vh;
+    padding: 0;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+body.zen-active .zen-workspace {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+body.zen-active .muyu-stage {
+    flex: 1;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body.zen-active .sidebar-panel.left-panel {
+    transform: translateX(-380px);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+
+body.zen-active .sidebar-panel.right-panel {
+    transform: translateX(400px);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+
+body.zen-active .app-header {
+    transform: translateY(-100px);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+
+body.zen-active .app-footer {
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+
+body.zen-active .exit-zen-btn {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE MEDIA QUERIES
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .zen-workspace {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .sidebar-panel.left-panel {
+        order: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .sidebar-panel.right-panel {
+        order: 3;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .muyu-stage {
+        order: 1;
+        padding: 40px 0;
+        min-height: auto;
+    }
+    
+    .quote-card {
+        grid-column: 1 / span 2;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: left;
+    }
+    
+    body.zen-active .sidebar-panel.left-panel {
+        transform: translateY(200px);
+    }
+    body.zen-active .sidebar-panel.right-panel {
+        transform: translateY(200px);
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        padding: 16px;
+    }
+    
+    .sidebar-panel.left-panel, 
+    .sidebar-panel.right-panel {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .quote-card {
+        grid-column: 1;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .muyu-container {
+        width: 50vw;
+        height: 50vw;
+        min-width: 170px;
+        min-height: 170px;
+    }
+    
+    .merit-display {
+        font-size: 38px;
+    }
+    
+    .app-footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 12px;
+    }
+
+    .app-header h1 {
+        font-size: 18px;
+    }
+
+    .app-header .icon-btn span {
+        display: none; /* Hide '極簡模式' text on tiny devices, keep icon */
+    }
+
+    .glass-card {
+        padding: 14px;
+    }
+
+    .muyu-container {
+        width: 55vw;
+        height: 55vw;
+    }
+
+    .merit-display {
+        font-size: 32px;
+    }
+}

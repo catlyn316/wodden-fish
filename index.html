@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>禪意電子木魚 Online - 累積功德，消除煩惱</title>
+    <meta name="description" content="最解壓的線上電子木魚！隨時隨地敲擊木魚，累積功德、消除煩惱。支援多種精美皮膚、自訂飄浮文字、Web Audio 高音質合成音效與自動修行模式，讓您在忙碌的數位生活中找回心靈的寧靜。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+TC:wght@300;500;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="skin-classic">
+    <!-- Background Aura Glow -->
+    <div class="ambient-glow" id="ambientGlow"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <span class="logo-icon">🕉️</span>
+                <h1>禪意木魚 <span>ONLINE</span></h1>
+            </div>
+            <button id="zenModeBtn" class="icon-btn" title="切換極簡禪修模式">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 2a10 10 0 0 1 10 10H12V2z" opacity="0.3"></path></svg>
+                <span>極簡模式</span>
+            </button>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="zen-workspace">
+            <!-- Left Side: Stats and Achievements (Glassmorphic) -->
+            <section class="sidebar-panel left-panel">
+                <!-- Merit Counters -->
+                <div class="glass-card merit-card">
+                    <div class="card-tag">累積功德</div>
+                    <div class="merit-display">
+                        <span class="merit-number" id="meritCount">0</span>
+                    </div>
+                    <div class="merit-sub">
+                        <span>今日功德: <strong id="todayMerit">0</strong></span>
+                        <span class="bullet">•</span>
+                        <span>最高 Combo: <strong id="maxCombo">0</strong></span>
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="glass-card achievements-card">
+                    <h3>修行成就</h3>
+                    <div class="achievements-list" id="achievementsList">
+                        <!-- Loaded dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- Zen Quotes / Breathing Guide -->
+                <div class="glass-card quote-card">
+                    <div class="quote-content" id="zenQuote">「心無旁鶩，當下即是修行。」</div>
+                    <div class="breathing-circle-container">
+                        <div class="breathing-circle" id="breathingCircle"></div>
+                        <span class="breathing-text" id="breathingText">吸氣...</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Center: The Muyu Tap Target -->
+            <section class="muyu-stage">
+                <div class="combo-badge" id="comboBadge">Combo <span>0</span></div>
+                
+                <div class="muyu-container" id="muyuTapArea">
+                    <!-- Particle Container for Radial Ripples -->
+                    <div class="ripple-container" id="rippleContainer"></div>
+                    
+                    <!-- Floating Text Spawn Area -->
+                    <div class="floating-text-area" id="floatingTextArea"></div>
+
+                    <!-- SVG Wooden Fish -->
+                    <div class="muyu-wrapper">
+                        <svg viewBox="0 0 200 200" class="muyu-svg" id="muyuSvg">
+                            <defs>
+                                <radialGradient id="fish-grad" cx="45%" cy="40%" r="60%">
+                                    <stop offset="0%" stop-color="var(--muyu-color-light)" />
+                                    <stop offset="60%" stop-color="var(--muyu-color-mid)" />
+                                    <stop offset="100%" stop-color="var(--muyu-color-dark)" />
+                                </radialGradient>
+                                <filter id="muyu-glow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="8" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                            </defs>
+                            
+                            <!-- Drop Shadow Ellipse -->
+                            <ellipse cx="100" cy="172" rx="72" ry="12" fill="var(--muyu-shadow)" class="muyu-svg-shadow" />
+                            
+                            <!-- Wooden Fish Body -->
+                            <path d="M 100 25 
+                                     C 158 25, 185 75, 178 118 
+                                     C 172 150, 142 170, 100 170 
+                                     C 58 170, 28 150, 22 118 
+                                     C 15 75, 42 25, 100 25 Z" 
+                                  fill="url(#fish-grad)" 
+                                  stroke="var(--muyu-stroke)" 
+                                  stroke-width="5.5" 
+                                  stroke-linejoin="round"
+                                  class="muyu-svg-body" />
+                            
+                            <!-- Symbolic Sound Slit (Mouth) -->
+                            <path d="M 45 130 C 70 148, 130 148, 155 130 C 130 136, 70 136, 45 130 Z" fill="var(--muyu-stroke-dark)" />
+                            <circle cx="45" cy="130" r="4.5" fill="var(--muyu-stroke-dark)" />
+                            <circle cx="155" cy="130" r="4.5" fill="var(--muyu-stroke-dark)" />
+                            
+                            <!-- Head Carving Curve -->
+                            <path d="M 58 75 A 52 52 0 0 0 142 75" fill="none" stroke="var(--muyu-stroke)" stroke-width="3.5" stroke-linecap="round" opacity="0.65" />
+                            
+                            <!-- Traditional Scale Carving details -->
+                            <path d="M 75 95 C 85 105, 115 105, 125 95" fill="none" stroke="var(--muyu-stroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.5" />
+                            <path d="M 85 115 C 92 122, 108 122, 115 115" fill="none" stroke="var(--muyu-stroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.4" />
+                            
+                            <!-- Central Meditation Eye / Sound Ring -->
+                            <circle cx="100" cy="52" r="7.5" fill="var(--muyu-stroke)" opacity="0.8" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="tap-hint">點擊木魚或按下空白鍵 [Space] 進行積累</div>
+            </section>
+
+            <!-- Right Side: Advanced Settings & Control Panel (Glassmorphic) -->
+            <section class="sidebar-panel right-panel">
+                <!-- Skin Selector Carousel -->
+                <div class="glass-card control-card">
+                    <h3>法相皮膚 (Skins)</h3>
+                    <div class="skin-selector-container">
+                        <div class="skin-selector">
+                            <button class="skin-btn active" data-skin="classic" title="經典原木">
+                                <span class="color-preview skin-classic-preview"></span>
+                                <span>經典木紋</span>
+                            </button>
+                            <button class="skin-btn" data-skin="gold" title="金光璀璨">
+                                <span class="color-preview skin-gold-preview"></span>
+                                <span>金光禪意</span>
+                            </button>
+                            <button class="skin-btn" data-skin="cyber" title="賽博霓虹">
+                                <span class="color-preview skin-cyber-preview"></span>
+                                <span>賽博霓虹</span>
+                            </button>
+                            <button class="skin-btn" data-skin="ink" title="水墨禪心">
+                                <span class="color-preview skin-ink-preview"></span>
+                                <span>水墨禪心</span>
+                            </button>
+                            <button class="skin-btn" data-skin="sakura" title="櫻花粉黛">
+                                <span class="color-preview skin-sakura-preview"></span>
+                                <span>櫻花粉黛</span>
+                            </button>
+                            <button class="skin-btn" data-skin="jade" title="翡翠玉石">
+                                <span class="color-preview skin-jade-preview"></span>
+                                <span>翡翠玉石</span>
+                            </button>
+                            <button class="skin-btn" data-skin="abyss" title="暗夜寂靜">
+                                <span class="color-preview skin-abyss-preview"></span>
+                                <span>暗夜寂靜</span>
+                            </button>
+                            <button class="skin-btn" data-skin="lava" title="火焰熔岩">
+                                <span class="color-preview skin-lava-preview"></span>
+                                <span>火焰熔岩</span>
+                            </button>
+                            <button class="skin-btn" data-skin="ocean" title="深海星河">
+                                <span class="color-preview skin-ocean-preview"></span>
+                                <span>深海星河</span>
+                            </button>
+                            <button class="skin-btn" data-skin="aurora" title="幻彩極光">
+                                <span class="color-preview skin-aurora-preview"></span>
+                                <span>幻彩極光</span>
+                            </button>
+                            <button class="skin-btn" data-skin="porcelain" title="青花陶瓷">
+                                <span class="color-preview skin-porcelain-preview"></span>
+                                <span>青花陶瓷</span>
+                            </button>
+                            <button class="skin-btn" data-skin="heavy" title="金剛黑金">
+                                <span class="color-preview skin-heavy-preview"></span>
+                                <span>金剛黑金</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Floating Text -->
+                <div class="glass-card control-card">
+                    <h3>自訂功德語</h3>
+                    <div class="custom-word-settings">
+                        <div class="input-group-half">
+                            <label for="customTextInput">顯示字句</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="customTextInput" placeholder="預設：功德" maxlength="6">
+                            </div>
+                        </div>
+                        <div class="input-group-half">
+                            <label for="customNumberInput">數值變化</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="customNumberInput" placeholder="預設：+1" value="+1" maxlength="6">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-tags" style="margin-bottom: 16px;">
+                        <button class="tag-btn" data-word="功德" data-num="+1">功德</button>
+                        <button class="tag-btn" data-word="薪水" data-num="+1">薪水</button>
+                        <button class="tag-btn" data-word="好運" data-num="+1">好運</button>
+                        <button class="tag-btn" data-word="煩惱" data-num="-1">煩惱 -</button>
+                        <button class="tag-btn" data-word="Bug" data-num="-1">Bug -</button>
+                        <button class="tag-btn" data-word="脂肪" data-num="-1">脂肪 -</button>
+                    </div>
+
+                    <!-- Floating Text FX Sliders -->
+                    <div class="slider-group" style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px; margin-top: 12px;">
+                        <div class="slider-label">
+                            <span>文字旋轉幅度</span>
+                            <span id="rotateRangeVal">40度</span>
+                        </div>
+                        <input type="range" id="rotateRangeSlider" min="0" max="90" value="40" step="5">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>文字飄散距離</span>
+                            <span id="floatDistVal">130px</span>
+                        </div>
+                        <input type="range" id="floatDistSlider" min="50" max="300" value="130" step="10">
+                    </div>
+                </div>
+
+                <!-- Audio Settings -->
+                <div class="glass-card control-card">
+                    <h3>音聲設定</h3>
+                    
+                    <!-- Volume -->
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>音量</span>
+                            <span id="volumeVal">100%</span>
+                        </div>
+                        <input type="range" id="volumeSlider" min="0" max="100" value="100">
+                    </div>
+
+                    <!-- Pitch -->
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>音調 (木材密度)</span>
+                            <span id="pitchVal">中音 (600Hz)</span>
+                        </div>
+                        <input type="range" id="pitchSlider" min="300" max="1200" value="600" step="50">
+                    </div>
+
+                    <!-- Resonance -->
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>餘音 (大雄寶殿共鳴)</span>
+                            <span id="decayVal">標準</span>
+                        </div>
+                        <input type="range" id="decaySlider" min="10" max="80" value="25" step="5">
+                    </div>
+                </div>
+
+                <!-- Auto Play -->
+                <div class="glass-card control-card auto-cultivate-card">
+                    <div class="auto-header">
+                        <h3>自動修行 (Auto Tap)</h3>
+                        <label class="switch">
+                            <input type="checkbox" id="autoTapToggle">
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="slider-group" id="autoSpeedGroup" style="opacity: 0.5; pointer-events: none;">
+                        <div class="slider-label">
+                            <span>修行速度 (間隔時間)</span>
+                            <span id="autoSpeedVal">1.0 秒/次</span>
+                        </div>
+                        <input type="range" id="autoSpeedSlider" min="200" max="3000" value="1000" step="100">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>© 2026 禪意木魚 Online. 諸法皆空，自由修行。</p>
+            <div class="footer-links">
+                <button id="resetDataBtn" class="text-link">重置修行數據</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Zen Mode Exit Button (only shown in Zen Mode) -->
+    <button id="exitZenBtn" class="exit-zen-btn" title="退出極簡模式">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+        <span>返回修行面版</span>
+    </button>
+
+    <!-- Custom Script -->
+    <script src="app.js"></script>
+</body>
+</html>
