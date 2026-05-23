@@ -47,7 +47,7 @@
                 </div>
 
                 <!-- Achievements -->
-                <div class="glass-card achievements-card">
+                <div class="glass-card achievements-card" id="achievementsCard">
                     <h3>修行成就</h3>
                     <div class="achievements-list" id="achievementsList">
                         <!-- Loaded dynamically via JS -->
@@ -55,7 +55,7 @@
                 </div>
 
                 <!-- Zen Quotes / Breathing Guide -->
-                <div class="glass-card quote-card">
+                <div class="glass-card quote-card" id="quoteCard">
                     <div class="quote-content" id="zenQuote">「心無旁鶩，當下即是修行。」</div>
                     <div class="breathing-circle-container">
                         <div class="breathing-circle" id="breathingCircle"></div>
@@ -66,6 +66,17 @@
 
             <!-- Center: The Muyu Tap Target -->
             <section class="muyu-stage">
+                <!-- Mobile-Only Merit Counter -->
+                <div class="mobile-merit-display" id="mobileMeritDisplay">
+                    <div class="mobile-merit-tag">累積功德</div>
+                    <div class="mobile-merit-number" id="mobileMeritCount">0</div>
+                    <div class="mobile-merit-sub">
+                        <span>今日: <strong id="mobileTodayMerit">0</strong></span>
+                        <span class="bullet">•</span>
+                        <span>Combo: <strong id="mobileMaxCombo">0</strong></span>
+                    </div>
+                </div>
+
                 <div class="combo-badge" id="comboBadge">Combo <span>0</span></div>
                 
                 <div class="muyu-container" id="muyuTapArea">
@@ -126,10 +137,30 @@
                 <div class="tap-hint">點擊木魚或按下空白鍵 [Space] 進行積累</div>
             </section>
 
+            <!-- Mobile Tab Navigation Bar -->
+            <nav class="mobile-tab-nav" id="mobileTabNav">
+                <button class="mobile-tab-btn active" data-tab="skins">
+                    <span class="tab-icon">🎨</span>
+                    <span>法相外觀</span>
+                </button>
+                <button class="mobile-tab-btn" data-tab="audio">
+                    <span class="tab-icon">🎵</span>
+                    <span>音聲設定</span>
+                </button>
+                <button class="mobile-tab-btn" data-tab="auto">
+                    <span class="tab-icon">🤖</span>
+                    <span>自動修行</span>
+                </button>
+                <button class="mobile-tab-btn" data-tab="achievements">
+                    <span class="tab-icon">🏆</span>
+                    <span>修行成就</span>
+                </button>
+            </nav>
+
             <!-- Right Side: Advanced Settings & Control Panel (Glassmorphic) -->
             <section class="sidebar-panel right-panel">
                 <!-- Skin Selector Carousel -->
-                <div class="glass-card control-card">
+                <div class="glass-card control-card" id="skinsCard">
                     <h3>法相皮膚 (Skins)</h3>
                     <div class="skin-selector-container">
                         <div class="skin-selector">
@@ -186,7 +217,7 @@
                 </div>
 
                 <!-- Custom Floating Text -->
-                <div class="glass-card control-card">
+                <div class="glass-card control-card" id="wordsCard">
                     <h3>自訂功德語</h3>
                     <div class="custom-word-settings">
                         <div class="input-group-half">
@@ -231,7 +262,7 @@
                 </div>
 
                 <!-- Audio Settings -->
-                <div class="glass-card control-card">
+                <div class="glass-card control-card" id="audioCard">
                     <h3>音聲設定</h3>
                     
                     <!-- Volume -->
@@ -263,7 +294,7 @@
                 </div>
 
                 <!-- Auto Play -->
-                <div class="glass-card control-card auto-cultivate-card">
+                <div class="glass-card control-card auto-cultivate-card" id="autoCard">
                     <div class="auto-header">
                         <h3>自動修行 (Auto Tap)</h3>
                         <label class="switch">

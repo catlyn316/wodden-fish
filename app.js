@@ -70,6 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const breathingTextEl = document.getElementById('breathingText');
     const achievementsListEl = document.getElementById('achievementsList');
 
+    // Mobile Merit Display & Tabs
+    const mobileMeritCountEl = document.getElementById('mobileMeritCount');
+    const mobileTodayMeritEl = document.getElementById('mobileTodayMerit');
+    const mobileMaxComboEl = document.getElementById('mobileMaxCombo');
+    const mobileTabButtons = document.querySelectorAll('.mobile-tab-btn');
+
     // ----------------------------------------------------------------------
     // 3. SOUND SYNTHESIS ENGINE (Web Audio API)
     // ----------------------------------------------------------------------
@@ -264,6 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('muyu_today_merits', '0');
         }
         todayMeritEl.textContent = state.todayMerits;
+        if (mobileTodayMeritEl) mobileTodayMeritEl.textContent = state.todayMerits;
     }
 
     // ----------------------------------------------------------------------
@@ -280,6 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
         state.todayMerits++;
         meritCountEl.textContent = state.merits;
         todayMeritEl.textContent = state.todayMerits;
+        if (mobileMeritCountEl) mobileMeritCountEl.textContent = state.merits;
+        if (mobileTodayMeritEl) mobileTodayMeritEl.textContent = state.todayMerits;
         localStorage.setItem('muyu_merits', state.merits);
         localStorage.setItem('muyu_today_merits', state.todayMerits);
 
@@ -291,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (state.currentCombo > state.maxCombo) {
             state.maxCombo = state.currentCombo;
             maxComboEl.textContent = state.maxCombo;
+            if (mobileMaxComboEl) mobileMaxComboEl.textContent = state.maxCombo;
             localStorage.setItem('muyu_max_combo', state.maxCombo);
         }
         
@@ -627,6 +637,9 @@ document.addEventListener('DOMContentLoaded', () => {
             meritCountEl.textContent = '0';
             todayMeritEl.textContent = '0';
             maxComboEl.textContent = '0';
+            if (mobileMeritCountEl) mobileMeritCountEl.textContent = '0';
+            if (mobileTodayMeritEl) mobileTodayMeritEl.textContent = '0';
+            if (mobileMaxComboEl) mobileMaxComboEl.textContent = '0';
             customTextInput.value = '功德';
             customNumberInput.value = '+1';
             rotateRangeSlider.value = 40;
@@ -658,6 +671,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set counters
     meritCountEl.textContent = state.merits;
     maxComboEl.textContent = state.maxCombo;
+    if (mobileMeritCountEl) mobileMeritCountEl.textContent = state.merits;
+    if (mobileMaxComboEl) mobileMaxComboEl.textContent = state.maxCombo;
+
+    // Mobile Tab Navigation Logic
+    mobileTabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            mobileTabButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const tab = btn.dataset.tab;
+            
+            // Remove old active tab classes from body
+            document.body.classList.remove('tab-skins', 'tab-audio', 'tab-auto', 'tab-achievements');
+            
+            // Add new active tab class
+            document.body.classList.add(`tab-${tab}`);
+        });
+    });
+
+    // Default to 'skins' tab on mobile load
+    document.body.classList.add('tab-skins');
     
     // Initialize skin
     document.body.classList.remove('skin-classic');

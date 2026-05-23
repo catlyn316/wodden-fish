@@ -381,6 +381,7 @@ body {
     gap: 20px;
     z-index: 20;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+    min-width: 0; /* Let sidebar items shrink correctly inside CSS Grid/Flex containers */
 }
 
 /* Glassmorphism Cards */
@@ -1049,6 +1050,11 @@ body.zen-active {
     overflow: hidden;
 }
 
+body.zen-active .mobile-tab-nav,
+body.zen-active .mobile-merit-display {
+    display: none !important;
+}
+
 body.zen-active .app-container {
     height: 100vh;
     padding: 0;
@@ -1110,6 +1116,14 @@ body.zen-active .exit-zen-btn {
     pointer-events: auto;
 }
 
+/* Hide mobile-only elements by default on desktop */
+.mobile-merit-display {
+    display: none;
+}
+.mobile-tab-nav {
+    display: none;
+}
+
 /* --------------------------------------------------------------------------
    RESPONSIVE MEDIA QUERIES
    -------------------------------------------------------------------------- */
@@ -1156,18 +1170,54 @@ body.zen-active .exit-zen-btn {
 @media (max-width: 768px) {
     .app-container {
         padding: 16px;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    
+    /* Workspace mobile stack layout */
+    .zen-workspace {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        min-width: 0;
     }
     
     .sidebar-panel.left-panel, 
     .sidebar-panel.right-panel {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
         gap: 16px;
+        min-width: 0;
+    }
+    
+    .sidebar-panel.left-panel {
+        order: 3;
+    }
+
+    .sidebar-panel.right-panel {
+        order: 4;
+    }
+    
+    .muyu-stage {
+        order: 1;
+        padding: 10px 0 15px 0;
+        min-height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .mobile-tab-nav {
+        order: 2;
     }
     
     .quote-card {
-        grid-column: 1;
         flex-direction: column;
         text-align: center;
+        align-items: center;
     }
     
     .muyu-container {
@@ -1177,14 +1227,162 @@ body.zen-active .exit-zen-btn {
         min-height: 170px;
     }
     
-    .merit-display {
-        font-size: 38px;
-    }
-    
     .app-footer {
         flex-direction: column;
         gap: 12px;
         text-align: center;
+    }
+
+    /* Always-visible Mobile Merit Display */
+    .mobile-merit-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: var(--glass-border);
+        border-radius: var(--border-radius-md);
+        padding: 12px 24px;
+        margin-bottom: 16px;
+        width: 85%;
+        max-width: 320px;
+        box-shadow: var(--glass-shadow), 0 0 15px var(--accent-glow);
+        border-top: 2px solid var(--accent);
+        z-index: 50;
+        animation: card-appear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+    }
+
+    @keyframes card-appear {
+        from { opacity: 0; transform: translateY(-15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-merit-tag {
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+
+    .mobile-merit-number {
+        font-family: var(--font-numbers);
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--accent);
+        text-shadow: 0 0 15px var(--accent-glow);
+        line-height: 1.1;
+    }
+
+    .mobile-merit-sub {
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-top: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .mobile-merit-sub strong {
+        color: var(--text-primary);
+        font-family: var(--font-numbers);
+    }
+
+    /* Mobile Sticky Tab Navigation Bar */
+    .mobile-tab-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: var(--glass-border);
+        border-radius: var(--border-radius-md);
+        padding: 8px 6px;
+        margin: 20px 0 10px 0;
+        z-index: 100;
+        box-shadow: var(--glass-shadow);
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .mobile-tab-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        padding: 8px 4px;
+        font-family: var(--font-ui);
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        flex: 1;
+        transition: var(--transition-smooth);
+        border-radius: var(--border-radius-sm);
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-tab-btn:hover {
+        color: var(--text-primary);
+    }
+
+    .mobile-tab-btn.active {
+        color: var(--accent);
+        background: rgba(255, 255, 255, 0.05);
+        text-shadow: 0 0 5px var(--accent-glow);
+    }
+
+    .mobile-tab-btn.active .tab-icon {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 5px var(--accent-glow));
+    }
+
+    .tab-icon {
+        font-size: 16px;
+        transition: var(--transition-spring);
+    }
+
+    /* Hide desktop merit-card on mobile */
+    .zen-workspace .merit-card {
+        display: none !important;
+    }
+
+    /* Under mobile, hide all cards by default */
+    .zen-workspace .glass-card {
+        display: none;
+        width: 100%;
+        animation: tab-content-fade 0.4s ease forwards;
+    }
+
+    @keyframes tab-content-fade {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Toggle visibility on mobile based on body's class */
+    body.tab-skins #skinsCard,
+    body.tab-skins #wordsCard {
+        display: block !important;
+    }
+
+    body.tab-audio #audioCard {
+        display: block !important;
+    }
+
+    body.tab-auto #autoCard {
+        display: block !important;
+    }
+
+    body.tab-achievements #achievementsCard,
+    body.tab-achievements #quoteCard {
+        display: block !important;
     }
 }
 
